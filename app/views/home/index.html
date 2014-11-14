@@ -1,0 +1,76 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="mbox">
+  <div class="header">
+    <h2 class="b">SF ANYTIME REKOMMENDERAR</h2>
+  </div><!-- /header -->
+
+  <div class="content">
+    <div class="bucket">
+      <div class="bucket_menu">
+        <ul>
+          {% for k,v in editorials %}
+          <li>
+            <a href="#" {% if k==0 %}class="selected"{% endif %} _bind="editorial_{{ k }}">
+              <span class="btn_text">{{ v.menu }}</span><span class="btn_left"></span><span class="btn_right"></span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div><!-- /bucket_menu -->
+
+      {% for k,v in editorials %}
+      <div class="bucket_text {% if k>0 %}dn{% endif %}" id="editorial_{{ k }}">
+        <div class="title">{{ v.title }}</div>
+        {{ v.editorial|raw }}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="slider">
+      <div class="items jcarousel" id="mediaSlider">
+      </div>
+      <div class="page_left"></div>
+      <div class="page_right"></div>
+      <div class="cl"></div>
+    </div>
+    <div class="cl"></div>
+  </div><!-- content -->
+
+  <div class="footer">
+    <div class="slider_page">
+      <div class="pagination"></div>
+    </div>
+    <div class="ext_link"><a href="#">Visa fler filmkyssar &nbsp;&raquo;</a></div>
+  </div><!-- /footer -->
+
+  <div class="cl"></div>
+</div><!-- /mbox -->
+
+
+<script type="text/html" id='mediaData'>
+<ul>
+<% _.each(items,function(item,key,list){ %>
+  <li>
+    <div class="media">
+      <div class="media_border" onclick="location.href='#'"><div></div></div>
+      <div class="media_cover"><img src="<%= item.Cover %>" /></div>
+      <div class="media_shadow"></div>
+      <div class="media_title"><a href="#"><%= item.LocalTitle %></a></div>
+      <div>
+        <div class="media_price fl"><a href="#">Hyr <%= item.StrPrice %></a></div>
+        <div class="media_type fr dn">HD 3D</div>
+      <div>
+      <div class="cl"></div>
+    </div>
+  </li>
+<% }) %>
+</ul>
+</script>
+<script type="text/javascript">
+$(function(){
+    var ctrl = new $app.homeController();
+    ctrl.run();
+});
+</script>
+{% endblock%}

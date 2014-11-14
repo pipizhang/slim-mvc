@@ -1,0 +1,9 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "desarrolla2/cache":  "dev-master",
+        "slim/views": "dev-master",
+        "twig/twig": "1.15.*@dev"
+    }
+}
+
